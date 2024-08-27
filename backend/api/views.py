@@ -1,13 +1,10 @@
 from django.http import JsonResponse
 import json
 
+from products.models import Product
+
 
 def api_home(request, *args, **kwargs):
-    body = request.body
-    data = {}
-    try:
-        data = json.loads(body) # String json --> Python dict
-    except:
-        pass
-    print(data)
-    return JsonResponse({"messege": "Hi there"})
+    all_products = Product.objects.all()
+    data  = json.loads(all_products)
+    return JsonResponse(data)
