@@ -1,6 +1,6 @@
 # products app views
 
-from rest_framework import generics , permissions , authentication
+from rest_framework import generics, permissions, authentication
 
 from .models import Product
 from .serializers import SerializerProduct
@@ -17,7 +17,7 @@ class ProductDeleteApiView(generics.DestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = SerializerProduct
     lookup_field = "pk"
-    
+
     def perform_destroy(self, instance):
         super().perform_destroy(instance)
 
@@ -27,13 +27,14 @@ class ProductUpdateApiView(generics.UpdateAPIView):
     queryset = Product.objects.all()
     serializer_class = SerializerProduct
     lookup_field = "pk"
-    
+
     def perform_update(self, serializer):
-      instance = serializer.save()
+        instance = serializer.save()
 
 
 # generic list API
 class ProducListApiView(generics.ListAPIView):
+    authentication_classes = [authentication.TokenAuthentication]
     queryset = Product.objects.all()
     serializer_class = SerializerProduct
 

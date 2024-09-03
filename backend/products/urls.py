@@ -3,6 +3,8 @@
 from django.urls import path
 from . import views
 
+
+
 urlpatterns = [
     # API read per pk localhost:8000/api/product
     path("<int:pk>/", views.ProducDetailApiView.as_view()),
