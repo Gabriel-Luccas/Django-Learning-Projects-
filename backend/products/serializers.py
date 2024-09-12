@@ -11,3 +11,8 @@ class SerializerProduct(serializers.ModelSerializer):
             "price",
         ]
 
+"""    def validate_title(self, value):
+        query_set = Product.objects.filter(title_iexpect=value)
+        if query_set.exist():
+            raise serializers.ValidationError(f" {value} is alredy a product name ")
+        return value"""
